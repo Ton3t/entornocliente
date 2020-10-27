@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="ejer01.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="idformulario" name="formulario">
+        <h1>Formulario</h1>
+        <label for="nombre">Nombre</label><br>
+        <input type="text" name="nombre" id="idnombre"><br>
+        <label for="dir">Dirección</label><br>
+        <input type="text" name="dir" id="iddir"><br>
+        <label for="nif">NIF</label><br>
+        <input type="text" name="nif" id="idnif" maxlength="999999999"><br>
+        <label for="fechaNac">Fecha de nacimiento:</label><br>
+        <input type="date" name="fechaChita" id="idfechaCita"><br>
+        <label for="cdpostal">Código Postal</label><br>
+        <input type="number" name="cdpostal" id="idcdpostal"><br>
+        <label for="pais">País</label><br>
+        <select name="pais" id="idpais">
+            <option value="españa">España</option>
+            <option value="italia">Italia</option>
+            <option value="argentina">Argentina</option>
+            <option value="holanda">Holanda</option>
+            <option value="portugal">Portugal</option>
+            <option value="alemania">Alemania</option>
+        </select><br>
+        <label for="gener" id="idgenero">Género</label><br>
+        <input type="radio" name="genero" id="idmasc" checked><label for="masculino">Masculino</label><br>
+        <input type="radio" name="genero" id="idfem"><label for="femenino">Femenino</label><br>
+        <label for="preferencias">Preferencias</label><br>
+        <input type="checkbox" name="color" id="color1" class="check"><label for="rojo">Rojo</label>
+        <input type="checkbox" name="color" id="color2" class="check"><label for="azul">Azul</label>
+        <input type="checkbox" name="color" id="color3" class="check"><label for="negro">Negro</label><br>
+        <label for="telefono">Teléfono</label><br>
+        <input type="number" name="telefono" id="idtelefono"><br>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="idemail"><br>
+        <label for="idpassword">Password</label><br>
+        <input type="password" name="password1" id="idpass1"><br>
+        <label for="passCorrecto">Verificación Password</label><br>
+        <input type="password" name="password2" id="idpass2"><br>
+        
+    </form>
+    <input type="button" value="Enviar" id="submit"><br>
+    <input type="reset" value="Borrar" id="reset">
+    <p id="p">
+
+    </p>
+</body>
+</html>

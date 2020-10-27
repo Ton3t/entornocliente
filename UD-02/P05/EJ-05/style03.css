@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+}
+
+.fotos {
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.botones {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+input {
+    width: 20vw;
+    height: 10vh;
+}
+
+img {
+    width: 500px;
+    border: solid blue;
+}
+
+#foto2 {
+    width: 600px;
+    height: 500px;
+}
