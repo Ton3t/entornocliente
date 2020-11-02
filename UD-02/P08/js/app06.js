@@ -1,4 +1,4 @@
-function anyadeStorage() {
+function anyadeLocal() {
     var nombre = document.getElementById("idnombre").value;
     var apellidos = document.getElementById("idapellidos").value;
     var dni = document.getElementById("iddni").value;
@@ -6,15 +6,37 @@ function anyadeStorage() {
     console.log(dni);
 
     if(isNaN(nombre) || isNaN(apellidos) || validarDni(dni) || validarEmail(email)) {
-        sessionStorage.setItem(nombre, apellidos + " " + dni + " " + email);
+        localStorage.setItem(nombre, apellidos + " " + dni + " " + email);
+        nombre.value = "";
+        apellidos.value = "";
+        dni.value = "";
+        email.value = "";
     }
     else {
         alert("Revise los campos.");
     }
-    nombre.value = "";
-        apellidos.value = "";
-        dni.value = "";
-        email.value = "";
+}
+
+function recuperar() {
+    var nombre = prompt("Nombre sessionStorage:");
+    if(sessionStorage.getItem(nombre)) {
+        var zona = document.getElementById("idmostrar");
+        alert(sessionStorage.getItem(nombre));
+        zona.innerHTML = sessionStorage.getItem(nombre);
+    }
+    else {
+        alert("No se ha encontrado");
+    }
+}
+
+function borrar() {
+    var nombre = prompt("Nombre sessionStorage:");
+    if(sessionStorage.getItem(nombre)) {
+        sessionStorage.removeItem(nombre);
+    }
+    else {
+        alert("No se ha encontrado");
+    }
 }
 
 function validarDni(valor) {
@@ -43,7 +65,7 @@ function validarEmail(valor) {
 
 
 function listener() {
-    document.getElementById("idguardar").addEventListener("click", anyadeStorage);
+    document.getElementById("idguardar").addEventListener("click", anyadeLocal);
     document.getElementById("idrecuperar").addEventListener("click", recuperar);
     document.getElementById("idborrar").addEventListener("click", borrar);
 }
