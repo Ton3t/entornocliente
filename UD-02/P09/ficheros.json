@@ -1,0 +1,8 @@
+{
+    "ciclos": [
+        {"nombre": "SMR", "descripcion": "Sistemas microinformáticos y redes"},
+        {"nombre": "ASIR", "descripcion": "Administración de sistemas informáticos y redes"},
+        {"nombre": "DAW", "descripcion": "Desarrollo de aplicaciones web"},
+        {"nombre": "DAM", "descripcion": "Desarrollo de aplicaciones multiplataforma"}
+    ]
+}

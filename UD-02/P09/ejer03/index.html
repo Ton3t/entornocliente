@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="estilos.css" hreflang=”es”> 
+   <script src="./js/app.js" defer></script>
+</head>
+<body>
+<div id="contenedor">
+<h1>Frutas "El Pupas"</h1>
+    <div id="izquierda">
+        <div id="aguacate" class="fpeque">
+          <img src="imagenes/aguacate.jpg" class="peque">
+          <div>
+            <p>ref: <span>aguacate</span></p>
+            <p>precio: <span>5</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="albaricoque" class="fpeque">
+          <img src="imagenes/albaricoque.jpg" class="peque">
+          <div>
+            <p>ref: <span>albaricoque</span></p>
+            <p>precio: <span>3</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="cerezas" class="fpeque">
+          <img src="imagenes/cerezas.jpg" class="peque">
+          <div>
+            <p>ref: <span>cerezas</span></p>
+            <p>precio: <span>7</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="fresas" class="fpeque">
+          <img src="imagenes/fresas.jpg" class="peque">
+          <div>
+            <p>ref: <span>fresas</span></p>
+            <p>precio: <span>6</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="granada" class="fpeque">
+          <img src="imagenes/granada.jpg" class="peque">
+          <div>
+            <p>ref: <span>granada</span></p>
+            <p>precio: <span>5</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="lima" class="fpeque">
+          <img src="imagenes/lima.jpg" class="peque">
+          <div>
+            <p>ref: <span>lima</span></p>
+            <p>precio: <span>1</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="manzanas" class="fpeque">
+          <img src="imagenes/manzanas.jpg" class="peque">
+          <div>
+            <p>ref: <span>manzanas</span></p>
+            <p>precio: <span>2</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="melocoton" class="fpeque">
+          <img src="imagenes/melocoton.jpg" class="peque">
+          <div>
+            <p>ref: <span>melocoton</span></p>
+            <p>precio: <span>3</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="naranja" class="fpeque">
+          <img src="imagenes/naranja.jpg" class="peque">
+          <div>
+            <p>ref: <span>naranja</span></p>
+            <p>precio: <span>4</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="pera" class="fpeque">
+          <img src="imagenes/pera.jpg" class="peque">
+          <div>
+            <p>ref: <span>pera</span></p>
+            <p>precio: <span>4</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="piña" class="fpeque">
+          <img src="imagenes/piña.jpg" class="peque">
+          <div>
+            <p>ref: <span>piña</span></p>
+            <p>precio: <span>2</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="platano" class="fpeque">
+          <img src="imagenes/platano.jpg" class="peque">
+          <div>
+            <p>ref: <span>platano</span></p>
+            <p>precio: <span>2</span>€ Kg</p>
+          </div>
+        </div>
+        <div id="sandia" class="fpeque">
+          <img src="imagenes/sandia.jpg" class="peque">
+              <div>
+                <p>ref: <span>sandia</span></p>
+                <p>precio: <span>1</span>€ Kg</p>
+              </div>
+        </div>
+    
+    </div>
+    <div id="factura">
+       <div id="ffac"></div>
+       <form id="miform" action="*">
+          <label for="dni">DNI: </label><input type="text" id="dni" value="" placeholder="123456789X"><br>
+          <label for="ref">Ref: </label><input type="text" id="ref" value="" placeholder="ref" disabled="true"><br>
+          <label for="precio">Precio: </label><input type="text" id="precio" value="" placeholder="000.00" disabled="true"><br>
+          <label for="cantidad">Cantidad: </label><input type="text" id="cantidad" value="" placeholder="en KG">
+       </form>
+       <button id="grabar" class="mar_t_10">Grabar</button> <button id="cancelar" class="mar_t_10">Cancelar</button>
+
+       <table id="lineas">
+          <colgroup>
+             <col><col><col><col><col><col>
+          </colgroup>
+          <tfoot>
+              <tr>
+                 <td colspan="4">Total</td><td class="total a_derecha" id="idPreciototal">0</td>
+              </tr>
+          </tfoot>
+          <tr>
+             <th class="ancho1" >DNI</th><th class="ancho2">Ref.</th><th class="ancho3">Precio</th><th class="ancho3">Cantidad</th><th class="ancho3">Total</th><th class="ancho3"></th>
+          </tr>
+     
+       </table>
+       <button id="recuperar" class="mar_t_10">Recuperar tabla</button> <button id="almacenar" class="mar_t_10">Almacenar tabla</button>    <input type="button" value="Borrar todo" id="idborrarTodo" class="mar_t_10">
+    </div>
+</div>
+</body>
+</html>
