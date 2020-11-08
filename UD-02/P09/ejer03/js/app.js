@@ -28,7 +28,7 @@ var zonaPrecio = document.getElementById("precio");
 var tabla = document.getElementById("lineas");
 console.log(tabla.childNodes);
 
-    console.log(opcion);
+console.log(opcion);
 
 function esAguacate() {
     var objetivo = document.getElementById("ffac");
@@ -180,10 +180,9 @@ function validarDni() {
     var letraDni = texto.replace(patron, "$2");
     var resul = numeroDni % 23;
     var letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"];
-    if(letraDni.toUpperCase() == letras[resul] && patron.test(texto)) {
+    if (letraDni.toUpperCase() == letras[resul] && patron.test(texto)) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -192,7 +191,10 @@ var facturasTotal = 0;
 
 function anyadirFruta() {
     var cantidad = document.getElementById("cantidad").value;
-    if(validarDni() && cantidad != "" && zonaRef.value != "ref" && zonaPrecio.value != 0) {
+    if (validarDni() && cantidad != "" && zonaRef.value != "ref" && zonaPrecio.value != 0) {
+
+        json();
+
         console.log(tabla.childNodes);
         var fila = document.createElement("tr");
         var dni = document.createElement("td");
@@ -217,18 +219,106 @@ function anyadirFruta() {
         var inp = inputBorrar();
         fila.appendChild(inp);
         tabla.appendChild(fila);
-        var fac = document.createElement("th");
         var objetivo = document.getElementById("idPreciototal");
-        if(objetivo.hasChildNodes()) {
+        if (objetivo.hasChildNodes()) {
             objetivo.removeChild(objetivo.childNodes[0]);
         }
         facturasTotal = facturasTotal + coste;
         objetivo.innerHTML = facturasTotal;
         cancelarFruta();
-    }
-    else {
+    } else {
         alert("Dni o cantidad incorrecto");
     }
+}
+
+var lineas = [];
+
+function json() {
+
+    let nDni = document.getElementById("dni").value;
+    let nRef = document.getElementById("ref").value;
+    let nPrecio = document.getElementById("precio").value;
+    let cantidad = document.getElementById("cantidad").value;
+    let total = nPrecio * cantidad;
+
+
+    var facturas = {
+        "dni": nDni,
+        "ref": nRef,
+        "precio": nPrecio,
+        "cantidad": cantidad,
+        "total": total
+    };
+
+    var objeto = JSON.stringify(facturas);
+    sessionStorage.setItem("fac", objeto);
+    lineas.push(objeto);
+    console.log(lineas);
+}
+
+function almacenarTabla() {
+
+    var objeto = [];
+    console.log(objeto);
+    for (let i = 0; i < lineas.length; i++) {
+        objeto[i] = JSON.parse(lineas[i]);
+    }
+    for (let i = 0; i < objeto.length; i++) {
+        localStorage.setItem("factura" + i, lineas[i]);
+    }
+
+}
+
+function recuperarDatos() {
+
+    var objeto = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        objeto[i] = JSON.parse(localStorage.getItem("factura" + i));
+
+    }
+
+    console.log(objeto.length);
+
+    for (let i = 0; i < objeto.length; i++) {
+        var fila = document.createElement("tr");
+        var dni = document.createElement("td");
+        var ref = document.createElement("td");
+        var precio = document.createElement("td");
+        var cantidad = document.createElement("td");
+        var total = document.createElement("td");
+        dni.innerHTML = objeto[i].dni;
+        ref.innerHTML = objeto[i].ref;
+        precio.innerHTML = parseInt(objeto[i].precio);
+        cantidad.innerHTML = parseInt(objeto[i].cantidad);
+        total.innerHTML = parseInt(objeto[i].total);
+        fila.appendChild(dni);
+        fila.appendChild(ref);
+        fila.appendChild(precio);
+        fila.appendChild(cantidad);
+        fila.appendChild(total);
+        total.setAttribute("class", "sumaFactura");
+        total.setAttribute("id", "presu");
+        var inp = inputBorrar2();
+        fila.appendChild(inp);
+        tabla.appendChild(fila);
+    }
+
+    var objetivo = document.getElementById("idPreciototal");
+    if (objetivo.hasChildNodes()) {
+        objetivo.removeChild(objetivo.childNodes[0]);
+    }
+
+    var totfac = 0;
+    for (let i = 0; i < objeto.length; i++) {
+        totfac += parseInt(objeto[i].total);
+    }
+    objetivo.innerHTML = totfac;
+}
+
+function borrarTablalocal() {
+    lineas = [];
+    console.log(lineas.length);
+    localStorage.clear();
 }
 
 function cancelarFruta() {
@@ -252,10 +342,24 @@ function inputBorrar() {
     return td;
 }
 
-function borrarFila(e) {
+function inputBorrar2() {
+    var input = document.createElement("button");
+    var td = document.createElement("td");
+    input.innerHTML = "Borrar";
+    input.setAttribute("class", "boton");
+    td.appendChild(input);
+    input.addEventListener("click", borrarFila2);
+    return td;
+}
+
+function borrarFila2(e) {
+    var total = document.getElementById("idPreciototal").value;
+    console.log(total);
+    var num = parseInt(total);
+    console.log(num);
     e.target.parentNode.parentNode.remove();
     var objetivo = document.getElementById("idPreciototal");
-    if(objetivo.hasChildNodes()) {
+    if (objetivo.hasChildNodes()) {
         objetivo.removeChild(objetivo.childNodes[0]);
     }
     //if(objetivo.hasChildNodes()) {
@@ -264,25 +368,30 @@ function borrarFila(e) {
     console.log(e.target.parentNode.parentNode.childNodes[4]);
     var coste = e.target.parentNode.parentNode.childNodes[4].innerHTML;
     var dato = parseInt(coste);
-    facturasTotal = facturasTotal - dato;
-    
+    //facturasTotal = facturasTotal - dato;
+
     console.log(objetivo.childNodes);
-    objetivo.innerHTML = facturasTotal;
+    objetivo.innerHTML = total - coste;
     console.log(dato);
 }
 
-function borrarTablalocal() {
-    localStorage.clear();
-}
+function borrarFila(e) {
+    e.target.parentNode.parentNode.remove();
+    var objetivo = document.getElementById("idPreciototal");
+    if (objetivo.hasChildNodes()) {
+        objetivo.removeChild(objetivo.childNodes[0]);
+    }
+    //if(objetivo.hasChildNodes()) {
+    //    objetivo.removeChild(objetivo.childNodes[0]);
+    //}
+    console.log(e.target.parentNode.parentNode.childNodes[4]);
+    var coste = e.target.parentNode.parentNode.childNodes[4].innerHTML;
+    var dato = parseInt(coste);
+    //facturasTotal = facturasTotal - dato;
 
-function almacenaPedido() {
-    var td = document.getElementsByTagName("td");
-    var myObj = {dni: td[2].innerText, ref: td[3].innerText, precio: td[4].innerText, cantidad: td[5].innerText, total: td[6].innerText};
-    
-    var objeto = JSON.stringify(myObj);
-
-    console.log(objeto);
-    localStorage.setItem("factura", objeto);
+    console.log(objetivo.childNodes);
+    objetivo.innerHTML = facturasTotal - dato;
+    console.log(dato);
 }
 
 function iniciar() {
@@ -302,7 +411,8 @@ function iniciar() {
     document.getElementById("platano").addEventListener("dblclick", esPlatano);
     document.getElementById("sandia").addEventListener("dblclick", esSandia);
     document.getElementById("idborrarTodo").addEventListener("click", borrarTablalocal);
-    document.getElementById("almacenar").addEventListener("click", almacenaPedido);
+    document.getElementById("almacenar").addEventListener("click", almacenarTabla);
+    document.getElementById("recuperar").addEventListener("click", recuperarDatos);
 }
 
 
